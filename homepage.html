@@ -1,0 +1,158 @@
+<html>
+<head>
+<title>Railway reservation</title>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" ></script>
+<style>
+    .scaff{
+        text-align: center;
+        font-weight: bold;
+        padding-right:500;
+    }
+    #im1{
+        width:12%;
+        height:11%;
+        margin-top:15px;
+        padding-left:450;
+    }
+    ul{
+        list-style-type:none;
+        margin:0;
+        padding:0;
+        text-align: center;
+        overflow:hidden;
+        background-color: black;;
+    }
+    li{
+        display:inline;
+    }
+    li a{
+        padding:40px;
+        color:white;
+        text-decoration: none;
+    }
+    li a:hover{
+        background-color: #2980b9;
+    }
+    #b1{
+        width:90px;
+        background-color:#2980b9;
+        color:white;
+        font-weight:bold;
+        border:none;
+        padding:8px;
+        border-radius:10px;
+        position: absolute;
+    }
+    .tab1{
+        font-size:x-large;
+        padding-left:90;
+    }
+    #im2{
+        width:60%;
+        height: 70%;
+    }
+    h1{
+       color: white; 
+    }
+    td{
+        color: white;
+    }
+    
+</style>
+
+</head>
+<body style="background-color: black;">
+    
+<script>
+    $(document).ready(function() {
+        $('#b1').click(function(){
+            var textValue = $('#cl').val();
+            sessionStorage.setItem('cl', textValue);
+            var textValue = $('#from').val();
+            sessionStorage.setItem('from', textValue);
+            var textValue = $('#to').val();
+            sessionStorage.setItem('to', textValue);
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2,'0');
+            var mm = String(today.getMonth() + 1).padStart(2,'0');
+            var yy = today.getFullYear();
+            today = yy + '-' + mm + '-' + dd;
+            console.log(today);
+            var elementDate = $('#d1').val(); 
+            console.log(elementDate);
+            if (today === elementDate) {
+                alert('Today tickets are fulled');
+             } 
+            else if(today>elementDate) {
+                alert('We cannot book tickets for past days');
+            }
+            else{
+                window.location.href = 'reserve.html';
+            }
+        });
+        $('#r1').click(function(){
+            alert("Fill the details")
+        })
+    });
+</script>
+<div class="jk">
+<div class="scaff">
+    <img src="train.jpg" id="im1" style="float:left"><br>
+    <h1>INDIAN RAILWAYS</h1><br>
+</div>
+<ul><br>
+    <li><a href="home.html" style="background-color: #2980b9;">Home</a></li>
+    <li><a href="traindetails.html">View Train Details</a></li>
+    <li><a href="" id="r1">Reservation</a></li>
+    <br><br>
+</ul>
+<div class="form1">
+    <br>
+    <img src="ig.jpg" id="im2" style="float:right">
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <table class="tab1">
+        <tr>
+            <td><img height="20" src="from.png"  width="20"> From</td>
+        </tr>
+        <tr>
+            <td><input type="text" name="from" id="from" style="width:250px;height: 25px;"  ></td>
+        </tr>
+        <tr>
+            <td><img height="20" src="loc.png" width="20"> To</td>
+        </tr>
+        <tr>
+            <td><input type="text" name="to" id="to" style="width:250px;height: 25px;"></td>
+        </tr>
+        <tr>
+            <td><img height="25" src="calendar.png" width="25"> Date</td>
+        </tr>
+        <tr>
+            <td><input type="date" name="date" id="d1" style="width:250px;height: 25px;"></td>
+        </tr>
+        <tr>
+            <td><img height="15" src="st.png" width="15"> Class</td>
+        </tr>
+        <tr>
+            <td><select id="cl" style="width:250px;height: 25px;">
+                <option id="c1"></option>
+                <option id="c2">AC Three Tier(3A)</option>
+                <option id="c3">Two Tier(2A)</option>
+                <option id="c4">Economy Class</option>
+                <option id="c5">AC Two Tier</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="b1">Submit</button></td>
+        </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>

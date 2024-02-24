@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>Railway reservation</title>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" ></script>
+<style>
+    .scaff{
+        text-align: center;
+        font-weight: bold;
+        padding-right:500;
+    }
+    #im1{
+        width:12%;
+        height:11%;
+        margin-top:15px;
+        padding-left:450;
+    }
+    ul{
+        list-style-type:none;
+        margin:0;
+        padding:0;
+        text-align: center;
+        overflow:hidden;
+        background-color: black;;
+    }
+    li{
+        display:inline;
+    }
+    li a{
+        padding:40px;
+        color:white;
+        text-decoration: none;
+    }
+    li a:hover{
+        background-color: #2980bd;
+    }
+    table,th,td{
+    border:1.5px solid black;
+	border-collapse:collapse;
+    }
+    #t1{
+        width:80%;
+        height:30%;
+        text-align:center;
+    }
+    
+    #b2{
+        width:170px;
+        background-color:#2980b9;
+        color:white;
+        font-weight:bold;
+        border:none;
+        padding:8px;
+        border-radius:10px;
+    }
+
+    </style>
+    </head>
+    <body>
+        <script>
+            $(document).ready(function() {
+             var textValue = sessionStorage.getItem('cl');
+             $('#cll').text(textValue);
+             var textValue = sessionStorage.getItem('from');
+             $('#fr1').text(textValue);
+             var textValue = sessionStorage.getItem('to');
+             $('#to1').text(textValue);
+             $('#b2').click(function(){
+                var seat=$('#sno').val();
+                var clas=$('#cll').text();
+                var a1=$('#ac3').text();
+                var a2=$('#2tier').text();
+                var a3=$('#eclass').text();
+                var a4=$('#ac2a').text();
+                var tot;
+                if(clas===a1){
+                    tot=$('#3A').text();
+                }
+                else if(clas===a2){
+                    tot=$('#2A').text();
+                }
+                else if(clas===a3){
+                    tot=$('#ec').text();
+                }
+                else if(clas===a4){
+                    tot=$('#ac2').text();
+                }
+                var mel= $('td:contains("' + tot+ '")');
+                var eid = mel.attr('id');
+                if(seat>parseInt(tot)){
+                    alert("Seat not available")
+                }
+                else{
+                    alert("Tickets are reserved.Happy Journey!!");
+                    var res=parseInt(tot)-seat;
+                    $('#'+eid).text(res);
+                }
+             });
+    });
+        </script>
+        <div class="scaff">
+            <img src="train.jpg" id="im1" style="float:left"><br>
+            <h1>INDIAN RAILWAYS</h1><br>
+        </div>
+        <ul><br>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="traindetails.html">View Train Details</a></li>
+            <li><a href="reserve.html" style="background-color: #2980b9;">Reservation</a></li>
+            <br><br>
+        </ul>
+        <div class="rtab1">
+            <br>
+            <center>
+            <table id="t1">
+                <tr>
+                <th>Train Name</th>
+                <th>Train No</th>
+                <th>From</th>
+                <th> To &nbsp;&nbsp; </th>
+                <th colspan="4">Available Seats</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td id="ac3">AC Three Tier(3A)</td>
+                    <td id="2tier">Two Tier(2A)</td>
+                    <td id="eclass">Economy Class</td>
+                    <td id="ac2a">AC Two Tier</td>
+                </tr>
+                <tr>
+                    <td>Pothigai Express</td>
+                    <td>3A2190P9</td>
+                    <td id="fr1"></td>
+                    <td id="to1"></td>
+                    <td id="3A">30</td>
+                    <td id="2A">46</td>
+                    <td id="ec">20</td>
+                    <td id="ac2">21</td>
+                </tr>
+            </table>
+            </center>
+        </div>
+        <div id="f1">
+            <center>
+            <br>
+            <label>Chosen Class :</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label id="cll"></label><br><br>
+            <label>No of seats to reserve :</label>&nbsp;
+            <input type="text" id="sno"><br><br>
+            <button id="b2">Reserve Ticket</button>
+            </center>
+        </div>
+    </body>
+</html>
